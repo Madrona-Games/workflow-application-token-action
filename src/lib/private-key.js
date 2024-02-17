@@ -1,8 +1,7 @@
-module.exports = class PrivateKey {
-
+export class PrivateKey {
   constructor(data) {
     if (isRsaPrivateKey(data)) {
-      this._key = data ;
+      this._key = data;
     }
 
     // Try to decode as Base64 key
@@ -27,11 +26,12 @@ function decodeData(data) {
   if (isRsaPrivateKey(decoded)) {
     return decoded;
   }
-
-  return null;
 }
 
 function isRsaPrivateKey(data) {
   const possibleKey = `${data}`.trim();
-  return /^-----BEGIN RSA PRIVATE KEY-----/.test(possibleKey) && /-----END RSA PRIVATE KEY-----$/.test(possibleKey);
+
+  return (
+    possibleKey.startsWith('-----BEGIN RSA PRIVATE KEY-----') && possibleKey.endsWith('-----END RSA PRIVATE KEY-----')
+  );
 }

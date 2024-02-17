@@ -1,0 +1,74 @@
+{
+  "plugins": ["mocha", "@typescript-eslint", "prettier", "unicorn", "no-floating-promise"],
+  "extends": [
+    "plugin:unicorn/recommended",
+    "plugin:github/recommended",
+    "plugin:prettier/recommended",
+    "plugin:mocha/recommended"
+  ],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    // Error out for code formatting errors
+    "prettier/prettier": "error",
+    // Namespaces or sometimes needed
+    "import/no-namespace": "off",
+    // Properly format comments
+    "spaced-comment": ["error", "always"],
+    "lines-around-comment": [
+      "error",
+      {
+        "beforeBlockComment": true,
+        "beforeLineComment": true,
+        "allowBlockStart": true,
+        "allowObjectStart": true,
+        "allowArrayStart": true,
+        "allowClassStart": true,
+        "ignorePattern": "pragma|ts-ignore"
+      }
+    ],
+    // Mandatory spacing
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      },
+      {
+        "blankLine": "always",
+        "prev": "directive",
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": "directive",
+        "next": "directive"
+      }
+    ],
+    // Enforce camelCase
+    "camelcase": "error",
+    // Allow forOfStatements
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    // Continue is viable in forOf loops in generators
+    "no-continue": "off",
+    // From experience, named exports are almost always desired. I got tired of this rule
+    "import/prefer-default-export": "off",
+    // For this project only use kebab-case
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "kebabCase": true
+        }
+      }
+    ],
+    // Allow Array.from(set) mitigate TS2569 which would require '--downlevelIteration'
+    "unicorn/prefer-spread": "off",
+    // Temp disable to prevent mixing changes with other PRs
+    "i18n-text/no-en": "off",
+    "no-floating-promise/no-floating-promise": 2
+  }
+}
