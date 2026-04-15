@@ -1,14 +1,15 @@
 {
   "name": "workflow-application-token-action",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "GitHub Action to generate a GitHub Application access token for use in GitHub Actions workflows",
-  "main": "index.js",
+  "main": "build/src/index.js",
   "scripts": {
     "prepare": "lefthook install",
-    "test": "mocha --recursive \"lib/**/*.test.js\"",
-    "build-main": "ncc build --source-map --license licenses.txt --minify index.js -o dist/main",
-    "build-post": "ncc build --source-map --license licenses.txt --minify post.js -o dist/post",
-    "build": "npm run build-main && npm run build-post"
+    "compile": "tsc",
+    "test": "vitest run",
+    "build-main": "ncc build --source-map --license licenses.txt --minify build/src/index.js -o dist/main",
+    "build-post": "ncc build --source-map --license licenses.txt --minify build/src/post.js -o dist/post",
+    "build": "npm run compile && npm run build-main && npm run build-post"
   },
   "keywords": [
     "github-actions",
@@ -23,18 +24,20 @@
     "url": "https://github.com/peter-murray/workflow-application-token-action"
   },
   "dependencies": {
-    "@actions/core": "^1.10.1",
-    "@actions/github": "^6.0.0",
-    "https-proxy-agent": "^7.0.2",
-    "jsonwebtoken": "^9.0.2"
+    "@actions/core": "^3.0.0",
+    "@actions/github": "^9.1.0",
+    "https-proxy-agent": "^9.0.0",
+    "jsonwebtoken": "^9.0.3"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.38.1",
-    "chai": "^4.4.1",
-    "mocha": "^10.2.0",
-    "lefthook": "^1.6.1"
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.6.0",
+    "@vercel/ncc": "^0.38.4",
+    "lefthook": "^2.1.5",
+    "typescript": "^6.0.2",
+    "vitest": "^3.2.1"
   },
   "volta": {
-    "node": "20.11.0"
+    "node": "24.14.0"
   }
 }
