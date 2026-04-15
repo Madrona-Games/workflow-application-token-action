@@ -4,3 +4,6 @@
 
 # Node.js / npm
 node_modules
+
+# TypeScript build output
+build
