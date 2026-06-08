@@ -35,7 +35,7 @@
     "@vercel/ncc": "^0.38.4",
     "lefthook": "^2.1.5",
     "typescript": "^6.0.2",
-    "vitest": "^3.2.1"
+    "vitest": "^3.2.6"
   },
   "volta": {
     "node": "24.14.0"
